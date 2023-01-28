@@ -9,7 +9,7 @@ notas.txt
 /bin
 # CLion temp files
 .tmp*
-
+*.zip
 # Byte-compiled / optimized / DLL files
 ####################################
 ####################################
