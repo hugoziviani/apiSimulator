@@ -3,6 +3,9 @@
 //
 
 #include "System.hpp"
+// ADICIONAR o de cópia
+
+//System::System(System){}
 
 System::System(){
     this->name = "";
@@ -11,6 +14,10 @@ System::System(){
 System::System(string name, double value) { // Mudar string
     this->name = name;
     this->value = value;
+}
+System::System(System *toCopy) {
+    this->name = toCopy->getName();
+    this->value = toCopy->getValue();
 }
 System::~System(){}
 void System::setName(string name) {
@@ -32,3 +39,5 @@ System* System::operator=(System* system) {
     this->value = system->getValue();
     return this;
 }
+
+

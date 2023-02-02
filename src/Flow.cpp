@@ -9,6 +9,10 @@ Flow::Flow(System* source, System* destination){
     this->source = source;
     this->destination = destination;
 }
+Flow::Flow(Flow *flow) {
+    this->source = flow->getSource();
+    this->destination = flow->getSource();
+}
 Flow::~Flow()=default;
 void Flow::setSource(System* source){
     this->source = source;

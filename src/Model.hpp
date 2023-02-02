@@ -19,8 +19,9 @@ protected:
 
 public:
     Model();
+    Model(Model*);
     virtual ~Model();
-    double run(int,int);
+    double run(int, int);
     void add(System*);
     void add(Flow*);
 };

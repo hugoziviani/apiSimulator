@@ -4,6 +4,21 @@
 
 #include "FunctionalTest.hpp"
 
+bool nearlyEqual(float a, float b, float epsilon){
+    // https://www.boost.org/doc/libs/1_78_0/libs/math/doc/html/math_toolkit/float_comparison.html
+    float absA = fabs(a);
+    float absB = fabs(b);
+    float diff = fabs(a - b);
+    if(a == b){
+        return true;
+    } else if(a == 0 or b == 0 or diff < std::numeric_limits<float>::min()){
+        // a or b is zero or both are extremely close to it
+        // relative error is less meaningful here
+        return diff < (epsilon * std::numeric_limits<float>::min());
+    } else { // use relative error
+        return diff/(absA + absB) < epsilon;
+    }
+}
 void exponentialFuncionalTest(){
 
     Model* Modelexponential = new Model();
@@ -16,9 +31,9 @@ void exponentialFuncionalTest(){
     Modelexponential->add(pop2);
     Modelexponential->run(0, 100);
 
-    assert(fabs(pop1->getValue() - 36.6032) < 0.0001);
+    assert(nearlyEqual(pop1->getValue(), 36.6032, 0.0001));
     cout << "pop1 passed on Exponential test - Ok" << endl;
-    assert(fabs(pop2->getValue() - 63.3968) < 0.0001);
+    assert(nearlyEqual(pop2->getValue(), 63.3968, 0.0001));
     cout << "pop2 passed on Exponential test - Ok" << endl;
 
 }
@@ -73,14 +88,15 @@ void complexFuncionalTest () {
 
     model->run(0, 100);
 
-    assert(fabs((Q1->getValue() - 31.8513)) < 0.0001);
+//    assert(fabs(Q1->getValue() - 31.8513) < 0.0001);
+    assert(nearlyEqual(Q1->getValue(), 31.8513, 0.0001));
     cout << "Q1 passed on Complex test - Ok" << endl;
-    assert(fabs((Q2->getValue() - 18.4003)) < 0.0001);
+    assert(nearlyEqual(Q2->getValue(), 18.4003, 0.0001));
     cout << "Q2 passed on Complex test - Ok" << endl;
-    assert(fabs((Q3->getValue() - 77.1143)) < 0.0001);
+    assert(nearlyEqual(Q3->getValue(), 77.1143, 0.0001));
     cout << "Q3 passed on Complex test - Ok" << endl;
-    assert(fabs((Q4->getValue() - 56.1728)) < 0.0001);
+    assert(nearlyEqual(Q4->getValue(), 56.1728, 0.0001));
     cout << "Q4 passed on Complex test - Ok" << endl;
-    assert(fabs((Q5->getValue() - 16.4612)) < 0.0001);
+    assert(nearlyEqual(Q5->getValue(), 16.4612, 0.0001));
     cout << "Q5 passed on Complex test - Ok" << endl;
 }

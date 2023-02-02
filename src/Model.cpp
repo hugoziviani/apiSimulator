@@ -5,6 +5,26 @@
 #include "Model.hpp"
 
 Model::Model()= default;
+Model::Model(Model *model){
+    for (auto & system : systems){
+        delete system;
+    }
+    this->systems.clear();
+
+    for(auto & flow : flows){
+        delete flow;
+    }
+    this->flows.clear();
+
+    for (int i = 0; i < flows.size(); i++){
+        auto aux = model->flows.at(i);
+        this->flows.push_back(aux);
+    }
+
+    for (auto aux : model->systems){
+        this->systems.push_back(aux);
+    }
+}
 Model::~Model(){
     for (auto & flow : flows) {
         delete flow;

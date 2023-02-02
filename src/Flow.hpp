@@ -16,6 +16,7 @@ protected:
 public:
     Flow();
     Flow(System*, System*);
+    explicit Flow(Flow*);
     virtual ~Flow();
     void setSource(System*);
     void setDestination(System*);

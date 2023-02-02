@@ -19,6 +19,7 @@ protected:
 public:
     System();
     System(string="default", double=0.0);
+    System(System *);
 
     virtual ~System();
     void setName(string);

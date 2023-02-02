@@ -5,7 +5,7 @@
 #ifndef MYVENSIM_LOGISTIC_HPP
 #define MYVENSIM_LOGISTIC_HPP
 
-#include "Flow.hpp"
+#include "../../src/Flow.hpp"
 
 class Logistic: public Flow{
 public:
